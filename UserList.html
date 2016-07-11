@@ -1,0 +1,83 @@
+<div class="jumbotron text-center" >
+	<h1>User List</h1>
+
+	<div>
+
+		<!--<h3>Users</h3>-->
+
+		<form class="form-inline text-left">
+			<div class="form-group">
+				<label >Search</label>
+				<input type="text" ng-model="search" class="form-control" placeholder="Search"></input>
+				<span class="glyphicon glyphicon-search"></span>
+
+
+			</div>
+		</form>
+
+		<table class="w3-table w3-bordered w3-striped">
+			<tbody>
+
+				<tr>
+					<th>Edit</th>
+					<th ng-click="sort('fName')">First Name
+						<span class="glyphicon sort-icon" ng-show="sortKey=='fName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+					</th>
+
+					<th ng-click="sort('lName')">Last Name
+						<span class="glyphicon sort-icon" ng-show="sortKey=='lName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+					</th>
+					<th ng-click="sort('Age')">Age
+						<span class="glyphicon sort-icon" ng-show="sortKey=='Age'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+					</th>
+					<th ng-click="sort('Sex')">Sex
+						<span class="glyphicon sort-icon" ng-show="sortKey=='Sex'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+					</th>
+					<th>Action</th>
+				</tr>
+				
+
+				<tr dir-paginate="user in users | orderBy:sortKey:reverse | filter:search | itemsPerPage:5">
+					<td>
+						<a href="#/editUser/{{user.id}}">
+						<button class="w3-btn w3-ripple" >
+							&#9998; Edit
+						</button>
+						</a>
+					</td>
+					<td>{{ user.fName }}</td>
+					<td>{{ user.lName }}</td>
+					<td>{{ user.Age }}</td>
+					<td>{{ user.Sex }}</td>
+					<td>
+						<input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(user.id)"/>
+					</td>
+				</tr>
+
+				<dir-pagination-controls
+				max-size="5"
+				direction-links="true"
+				boundary-links="true" >
+			</dir-pagination-controls>
+		</tbody>
+
+
+	</table>
+	<br>
+	<a href="#/newUser" >
+		<button class="w3-btn w3-green w3-ripple">Create New User1</button></a>
+	
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
